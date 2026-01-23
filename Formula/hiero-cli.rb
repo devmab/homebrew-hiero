@@ -13,6 +13,12 @@ class HieroCli < Formula
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 
+  def caveats
+    <<~EOS
+      First-time setup (Initialization): When you run any command that requires an operator (like transferring HBAR or creating fungible tokens) in interactive mode, the CLI will automatically launch an initialization wizard to guide you through configuring the operator account, private key, and settings. In script mode (non-interactive), an error will be thrown instead, requiring you to use hcli network set-operator to configure the operator first.
+    EOS
+  end
+
   test do
     system "#{bin}/hcli", "--help"
   end
